@@ -3,14 +3,12 @@ import Box from '@mui/material/Box';
 import Typography from "@mui/material/Typography";
 import Section from './Section';
 
-export default function Project() {
+export const Project = () => {
     return (
         <Box sx={{
             display: 'grid'
         }}>
-            <Typography variant="h3" align="left">
-                Project name
-            </Typography>
+            <ProjectHeader/>
             <Section/>
         </Box>
     );

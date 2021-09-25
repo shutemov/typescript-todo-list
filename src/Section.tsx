@@ -11,9 +11,9 @@ import MoreVertIcon from '@mui/icons-material/MoreVert';
 import * as React from 'react';
 import Add from "@mui/icons-material/Add";
 
-export default function Project() {
+export const Section = () => {
     return (
-        <Card sx={{maxWidth: '20%'}}>
+        <Card sx={{maxWidth: '325px'}}>
             <CardActionArea>
                 <CardHeader
                     action={
@@ -24,12 +24,13 @@ export default function Project() {
                     title="Section Name"
                     align="left"
                 />
-                <CardContent>
-
-                </CardContent>
             </CardActionArea>
-            <CardActions sx={{display:'flex',justifyContent:'flex-end'}}>
-                <Button variant="contained" endIcon={<Add/>}>
+            <CardContent>
+                <TaskList/>
+            </CardContent>
+
+            <CardActions sx={{display: 'flex', justifyContent: 'flex-end'}}>
+                <Button sx={{width: '100%'}} variant="contained" endIcon={<Add/>}>
                     Add task
                 </Button>
             </CardActions>
