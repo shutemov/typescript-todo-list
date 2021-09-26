@@ -1,10 +1,15 @@
 import Typography from "@mui/material/Typography";
 import * as React from "react";
 
-export const ProjectHeader = () => {
+type ProjectHeader = {
+    name: string
+}
+
+export const ProjectHeader = (props: ProjectHeader) => {
+    const {name} = props
     return (
         <Typography variant="h3" align="left">
-            Project name
+            {name}
         </Typography>
     )
 }
