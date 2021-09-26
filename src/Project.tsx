@@ -1,16 +1,29 @@
 import * as React from 'react';
-import Box from '@mui/material/Box';
-import Typography from "@mui/material/Typography";
 import {Section} from './Section';
 import {ProjectHeader} from "./ProjectHeader";
+import Grid from '@mui/material/Grid';
+import Container from '@mui/material/Container';
+
 
 export const Project = () => {
     return (
-        <Box sx={{
-            display: 'grid'
-        }}>
-            <ProjectHeader/>
-            <Section/>
-        </Box>
-    );
+        <Container>
+            <Grid container direction="column">
+                <Grid item xs={12} paddingTop={3} paddingBottom={3}>
+                    <ProjectHeader/>
+                </Grid>
+                <Grid container rowSpacing={5}>
+                    <Grid item xs={12} md={4}>
+                        <Section/>
+                    </Grid>
+                    <Grid item xs={12} md={4}>
+                        <Section/>
+                    </Grid>
+                    <Grid item xs={12} md={4}>
+                        <Section/>
+                    </Grid>
+                </Grid>
+            </Grid>
+        </Container>
+    )
 }
