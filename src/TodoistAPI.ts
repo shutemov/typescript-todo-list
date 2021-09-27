@@ -27,3 +27,13 @@ export const getProjects = async () => {
     const data: Array<Project> = await response.json()
     return data
 }
+
+export const getSections = async (projectId: number) => {
+    const url: string = `  https://api.todoist.com/rest/v1/sections?project_id=${projectId}`
+    const headers: HeadersInit = new Headers();
+    headers.set('Authorization', `Bearer ${apiConfig.access_key}`);
+
+    const response = await fetch(url, {headers})
+    const data = await response.json()
+    return data
+}
