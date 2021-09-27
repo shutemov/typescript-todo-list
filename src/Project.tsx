@@ -44,25 +44,16 @@ export const Project = (props: ProjectType) => {
         <Container>
             <Grid container direction="column">
                 <Grid item xs={12} paddingTop={3} paddingBottom={3}>
-                    <ProjectHeader name="test"/>
+                    <ProjectHeader name={name}/>
                 </Grid>
                 <Grid container rowSpacing={5}>
-                    <Grid item xs={12} md={4}>
-                        <Paper>
-                            {sections.map(({name}) => {
-                                return (<h6 key={name}>{name}</h6>)
-                            })}
-                        </Paper>
-                    </Grid>
-                    <Grid item xs={12} md={4}>
-                        <Section/>
-                    </Grid>
-                    <Grid item xs={12} md={4}>
-                        <Section/>
-                    </Grid>
-                    <Grid item xs={12} md={4}>
-                        <Section/>
-                    </Grid>
+                    {sections.map(({id, name}) => {
+                        return (
+                            <Grid key={id} item xs={12} md={4}>
+                                <Section name={name}/>
+                            </Grid>
+                        )
+                    })}
                 </Grid>
             </Grid>
         </Container>
