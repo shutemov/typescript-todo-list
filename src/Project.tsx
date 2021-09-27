@@ -22,20 +22,23 @@ type ProjectType = {
     url?: string
 }
 
-export const Project = () => {
+export const Project = (props: ProjectType) => {
+    const {id, name} = props
     const [sections, setSections] = useState([])
 
     useEffect(() => {
         (async () => {
-            const url = `https://api.todoist.com/rest/v1/projects`
-            const headers: HeadersInit = new Headers();
-            headers.set('Authorization', `Bearer ${apiConfig.access_key}`);
-
-            const response = await fetch(url, {headers})
-            const data = await response.json()
-            setSections(data)
+            if(!id) return
+            const sections = await getSections(id)
+            console.log('Project', sections)
+            setSections(sections)
         })()
-    }, [])
+
+        return () => {
+            setSections([])
+        }
+
+    }, [id])
 
     return (
         <Container>
