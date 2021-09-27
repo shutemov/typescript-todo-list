@@ -72,3 +72,11 @@ const DrawerHeader = styled('div')(({theme}) => ({
 }));
 
 
+export const ProjectsPage = () => {
+    const theme = useTheme();
+    const [open, setOpen] = useState(false);
+
+    const [projectId, setProjectId] = useState(0)
+    const [projects, setProjects] = useState([])
+
+}
