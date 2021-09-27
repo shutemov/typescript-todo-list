@@ -1,10 +1,11 @@
 import React, {useState, useEffect} from 'react';
 import {Section} from './Section';
 import {ProjectHeader} from "./ProjectHeader";
+import {getSections} from "./TodoistAPI";
+import {Project as typeProject} from "./Project"
 import Grid from '@mui/material/Grid';
 import Container from '@mui/material/Container';
-import Paper from '@mui/material/Paper';
-import {apiConfig} from "./apiconfig";
+import {ProjectsPage} from "./ProjectsPage";
 
 type Section = {
     name: string
