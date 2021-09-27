@@ -11,18 +11,24 @@ import * as React from 'react';
 import Add from "@mui/icons-material/Add";
 import TaskList from "./TaskList";
 
-export const Section = () => {
+type Section = {
+    name: string
+}
+
+export const Section = (props: Section) => {
+    const {name} = props
+
     return (
         <Card sx={{maxWidth: '325px'}}>
-                <CardHeader
-                    action={
-                        <IconButton aria-label="settings">
-                            <MoreVertIcon/>
-                        </IconButton>
-                    }
-                    title="Section Name"
-                    align="left"
-                />
+            <CardHeader
+                action={
+                    <IconButton aria-label="settings">
+                        <MoreVertIcon/>
+                    </IconButton>
+                }
+                title={name}
+                align="left"
+            />
             <Divider/>
             <CardContent>
                 <TaskList/>
