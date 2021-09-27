@@ -79,4 +79,15 @@ export const ProjectsPage = () => {
     const [projectId, setProjectId] = useState(0)
     const [projects, setProjects] = useState([])
 
+    useEffect(() => {
+        (async () => {
+            const projects: any = await getProjects()
+            console.log('projects', projects)
+            const {id} = projects[2]
+            setProjects(projects)
+            setProjectId(id)
+        })()
+
+        // return () => setProjectId(123)
+    }, [])
 }
