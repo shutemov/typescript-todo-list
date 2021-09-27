@@ -75,17 +75,14 @@ const DrawerHeader = styled('div')(({theme}) => ({
 export const ProjectsPage = () => {
     const theme = useTheme();
     const [open, setOpen] = useState(false);
-
-    const [projectId, setProjectId] = useState(0)
+    const [project, setProject] = useState({id: 0, name: ''})
     const [projects, setProjects] = useState([])
 
     useEffect(() => {
         (async () => {
             const projects: any = await getProjects()
             console.log('projects', projects)
-            const {id} = projects[2]
             setProjects(projects)
-            setProjectId(id)
         })()
     }, [])
 
@@ -137,7 +134,7 @@ export const ProjectsPage = () => {
                 <Divider/>
                 <List>
                     {projects.map(({id, name}) => (
-                        <ListItem button key={id} onClick={() => setProjectId(id)}>
+                        <ListItem button key={id} onClick={() => setProject({id, name})}>
                             <ListItemText primary={name}/>
                         </ListItem>
                     ))}
@@ -156,7 +153,7 @@ export const ProjectsPage = () => {
             </Drawer>
             <Main open={open}>
                 <DrawerHeader/>
-                <Project id={projectId}/>
+                <Project id={project.id} name={project.name}/>
             </Main>
         </Box>
     );
