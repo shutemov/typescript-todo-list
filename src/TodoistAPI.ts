@@ -37,3 +37,7 @@ export const getSections = async (projectId: number) => {
     const data = await response.json()
     return data
 }
+
+export const getTasks = (sectionId: string) => {
+
+}
