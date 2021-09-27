@@ -87,7 +87,14 @@ export const ProjectsPage = () => {
             setProjects(projects)
             setProjectId(id)
         })()
-
-        // return () => setProjectId(123)
     }, [])
+
+    const handleDrawerOpen = () => {
+        setOpen(true);
+    };
+
+    const handleDrawerClose = () => {
+        setOpen(false);
+    };
+
 }
