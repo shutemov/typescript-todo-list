@@ -2,10 +2,13 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
 import CheckCircleRoundedIcon from "@mui/icons-material/CheckCircleRounded";
 import CheckCircleOutlineRoundedIcon from "@mui/icons-material/CheckCircleOutlineRounded";
-import React from "react";
+import React, {useState} from "react";
+import {Task} from "./Task";
 
-export const Task = () => {
-    const [checked, setChecked] = React.useState(false);
+export const TaskComponent = (props: Task) => {
+    const {content, completed} = props
+    const [checked, setChecked] = useState(completed);
+
     return (
         <FormControlLabel
             control={
@@ -18,7 +21,7 @@ export const Task = () => {
                     }}
                 />
             }
-            label="test"
+            label={content}
         />
     )
 }
