@@ -25,27 +25,22 @@ type Project = {
     url: string
 }
 
+export namespace TodoistApi {
+    export const getProjects = async () => {
+        const url: string = `https://api.todoist.com/rest/v1/projects`
+        const headers: HeadersInit = setAuthorizationBearerHeader()
 
-export const getProjects = async () => {
-    const url: string = `https://api.todoist.com/rest/v1/projects`
-    const headers: HeadersInit = new Headers();
-    headers.set('Authorization', `Bearer ${apiConfig.access_key}`);
+        const response = await fetch(url, {headers})
+        const data: Array<Project> = await response.json()
+        return data
+    }
 
-    const response = await fetch(url, {headers})
-    const data: Array<Project> = await response.json()
-    return data
-}
+    export const getSections = async (projectId: number) => {
+        const url: string = `  https://api.todoist.com/rest/v1/sections?project_id=${projectId}`
+        const headers: HeadersInit = setAuthorizationBearerHeader()
 
-export const getSections = async (projectId: number) => {
-    const url: string = `  https://api.todoist.com/rest/v1/sections?project_id=${projectId}`
-    const headers: HeadersInit = new Headers();
-    headers.set('Authorization', `Bearer ${apiConfig.access_key}`);
-
-    const response = await fetch(url, {headers})
-    const data = await response.json()
-    return data
-}
-
-export const getTasks = (sectionId: string) => {
-
+        const response = await fetch(url, {headers})
+        const data: Array<Section> = await response.json()
+        return data
+    }
 }
