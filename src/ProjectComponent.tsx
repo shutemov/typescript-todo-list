@@ -17,4 +17,7 @@ export const ProjectComponent = (props: Project) => {
     const defaultTasks = new Array<Task>()
     const [activeTasks, setActiveTasks] = useState(defaultTasks)
 
+    const sectionTasks = (sectionId: number = 0): Array<Task> => {
+        return activeTasks.filter(({section_id}) => section_id === sectionId)
+    }
 }
