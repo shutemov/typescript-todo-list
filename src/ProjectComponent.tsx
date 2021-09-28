@@ -20,4 +20,17 @@ export const ProjectComponent = (props: Project) => {
     const sectionTasks = (sectionId: number = 0): Array<Task> => {
         return activeTasks.filter(({section_id}) => section_id === sectionId)
     }
+
+    useEffect(() => {
+        (async () => {
+            if (!id) return //default havent id
+            const sections: Array<Section> = await TodoistApi.getSections(id)
+            setSections(sections)
+        })()
+
+        return () => {
+            setSections(new Array<Section>())
+        }
+    }, [id])
+
 }
