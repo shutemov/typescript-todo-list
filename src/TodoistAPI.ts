@@ -1,4 +1,6 @@
 import {apiConfig} from "./apiconfig"
+import {Section} from "./Section";
+import {Task} from "./Task";
 
 const {access_key} = apiConfig
 
