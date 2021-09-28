@@ -45,4 +45,22 @@ export const ProjectComponent = (props: Project) => {
         })()
     }, [id])
 
+    return (
+        <Container>
+            <Grid container direction="column">
+                <Grid item xs={12} paddingTop={3} paddingBottom={3}>
+                    <ProjectHeader name={name}/>
+                </Grid>
+                <Grid container rowSpacing={5}>
+                    {sections.map(({id, name}) => {
+                        return (
+                            <Grid key={id} item xs={12} md={4}>
+                                <SectionComponent name={name} tasks={sectionTasks(id)}/>
+                            </Grid>
+                        )
+                    })}
+                </Grid>
+            </Grid>
+        </Container>
+    )
 }
