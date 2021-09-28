@@ -1,6 +1,5 @@
 import Button from '@mui/material/Button';
 import Card from '@mui/material/Card';
-import CardActionArea from '@mui/material/CardActionArea';
 import CardActions from '@mui/material/CardActions';
 import Divider from '@mui/material/Divider';
 import CardContent from '@mui/material/CardContent';
@@ -9,14 +8,11 @@ import IconButton from '@mui/material/IconButton';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import * as React from 'react';
 import Add from "@mui/icons-material/Add";
-import TaskList from "./TaskList";
+import {TaskList} from "./TaskList";
+import {Section, Tasks} from "./Section";
 
-type Section = {
-    name: string
-}
-
-export const Section = (props: Section) => {
-    const {name} = props
+export const SectionComponent = (props: Section & Tasks) => {
+    const {name, tasks} = props
 
     return (
         <Card sx={{maxWidth: '325px'}}>
@@ -31,9 +27,8 @@ export const Section = (props: Section) => {
             />
             <Divider/>
             <CardContent>
-                <TaskList/>
+                <TaskList tasks={tasks}/>
             </CardContent>
-
             <CardActions sx={{display: 'flex', justifyContent: 'flex-end'}}>
                 <Button sx={{width: '100%'}} variant="contained" endIcon={<Add/>}>
                     Add task
