@@ -43,4 +43,13 @@ export namespace TodoistApi {
         const data: Array<Section> = await response.json()
         return data
     }
+
+    export const getActiveTasks = async () => {
+        const url: string = `https://api.todoist.com/rest/v1/tasks`
+        const headers: HeadersInit = setAuthorizationBearerHeader()
+
+        const response = await fetch(url, {headers})
+        const data: Array<Task> = await response.json()
+        return data
+    }
 }
