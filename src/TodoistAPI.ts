@@ -4,6 +4,12 @@ import {Task} from "./Task";
 
 const {access_key} = apiConfig
 
+const setAuthorizationBearerHeader = (): HeadersInit => {
+    const header: HeadersInit = new Headers();
+    header.set('Authorization', `Bearer ${apiConfig.access_key}`);
+    return header
+}
+
 type Project = {
     id: number,
     name: string,
