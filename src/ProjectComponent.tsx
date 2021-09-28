@@ -33,4 +33,16 @@ export const ProjectComponent = (props: Project) => {
         }
     }, [id])
 
+    useEffect(() => {
+        (async () => {
+            if (!id) return //default havent id
+            const activeTasks: Array<Task> = await TodoistApi.getActiveTasks()
+            setActiveTasks(activeTasks)
+
+            return () => {
+                setActiveTasks(new Array<Task>())
+            }
+        })()
+    }, [id])
+
 }
