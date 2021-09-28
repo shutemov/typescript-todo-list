@@ -75,8 +75,15 @@ export const ProjectsPage = () => {
     const theme = useTheme();
     const [open, setOpen] = useState(false);
 
+    const defaultProject: Project = {}
+    const [project, setProject] = useState(defaultProject)
+
+    const defaultProjects = new Array<Project>()
+    const [projects, setProjects] = useState(defaultProjects)
+
     useEffect(() => {
         (async () => {
+            const projects: Array<Project> = await TodoistApi.getProjects()
             setProjects(projects)
         })()
     }, [])
