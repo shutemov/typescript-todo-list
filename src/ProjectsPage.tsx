@@ -144,6 +144,7 @@ export const ProjectsPage = () => {
             </Drawer>
             <Main open={open}>
                 <DrawerHeader/>
+                <ProjectComponent id={project.id} name={project.name}/>
             </Main>
         </Box>
     );
