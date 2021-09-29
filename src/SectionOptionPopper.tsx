@@ -7,6 +7,7 @@ import List from '@mui/material/List';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
+import ClickAwayListener from '@mui/material/ClickAwayListener';
 import ModeEditOutlineOutlinedIcon from '@mui/icons-material/ModeEditOutlineOutlined';
 import ArrowForwardOutlinedIcon from '@mui/icons-material/ArrowForwardOutlined';
 import ArchiveTwoToneIcon from '@mui/icons-material/ArchiveTwoTone';
@@ -24,49 +25,53 @@ export const SectionOptionPopper = () => {
     const id = open ? 'simple-popper' : undefined;
 
     return (
-        <div>
-            <IconButton aria-describedby={id} aria-label="settings" onClick={handleClick}>
-                <MoreVertIcon/>
-            </IconButton>
-            <Popper id={id} open={open} anchorEl={anchorEl}>
-                <Box sx={{border: 1, p: 1, bgcolor: 'background.paper'}}>
-                    <List
-                        sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}
-                        component="nav"
-                    >
-                        <ListItemButton>
-                            <ListItemIcon>
-                                <ModeEditOutlineOutlinedIcon/>
-                            </ListItemIcon>
-                            <ListItemText primary="Edit section" />
-                        </ListItemButton>
-                        <ListItemButton>
-                            <ListItemIcon>
-                                <ArrowForwardOutlinedIcon />
-                            </ListItemIcon>
-                            <ListItemText primary="Move section" />
-                        </ListItemButton>
-                        <ListItemButton>
-                            <ListItemIcon>
-                                <ArchiveTwoToneIcon />
-                            </ListItemIcon>
-                            <ListItemText primary="Archive" />
-                        </ListItemButton>
-                        <ListItemButton>
-                            <ListItemIcon>
-                                <FileCopyTwoToneIcon />
-                            </ListItemIcon>
-                            <ListItemText primary="Duplicate" />
-                        </ListItemButton>
-                        <ListItemButton>
-                            <ListItemIcon>
-                                <DeleteTwoToneIcon />
-                            </ListItemIcon>
-                            <ListItemText primary="Delete section" />
-                        </ListItemButton>
-                    </List>
-                </Box>
-            </Popper>
-        </div>
+        <ClickAwayListener onClickAway={() => {
+            setAnchorEl(null);
+        }}>
+            <div>
+                <IconButton aria-describedby={id} aria-label="settings" onClick={handleClick}>
+                    <MoreVertIcon/>
+                </IconButton>
+                <Popper id={id} open={open} anchorEl={anchorEl}>
+                    <Box sx={{border: 1, p: 1, bgcolor: 'background.paper'}}>
+                        <List
+                            sx={{width: '100%', maxWidth: 360, bgcolor: 'background.paper'}}
+                            component="nav"
+                        >
+                            <ListItemButton>
+                                <ListItemIcon>
+                                    <ModeEditOutlineOutlinedIcon/>
+                                </ListItemIcon>
+                                <ListItemText primary="Edit section"/>
+                            </ListItemButton>
+                            <ListItemButton>
+                                <ListItemIcon>
+                                    <ArrowForwardOutlinedIcon/>
+                                </ListItemIcon>
+                                <ListItemText primary="Move section"/>
+                            </ListItemButton>
+                            <ListItemButton>
+                                <ListItemIcon>
+                                    <ArchiveTwoToneIcon/>
+                                </ListItemIcon>
+                                <ListItemText primary="Archive"/>
+                            </ListItemButton>
+                            <ListItemButton>
+                                <ListItemIcon>
+                                    <FileCopyTwoToneIcon/>
+                                </ListItemIcon>
+                                <ListItemText primary="Duplicate"/>
+                            </ListItemButton>
+                            <ListItemButton>
+                                <ListItemIcon>
+                                    <DeleteTwoToneIcon/>
+                                </ListItemIcon>
+                                <ListItemText primary="Delete section"/>
+                            </ListItemButton>
+                        </List>
+                    </Box>
+                </Popper>
+            </div>
+        </ClickAwayListener>
     );
 }
