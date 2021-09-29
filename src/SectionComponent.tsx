@@ -1,15 +1,14 @@
+import * as React from 'react';
 import Button from '@mui/material/Button';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import Divider from '@mui/material/Divider';
 import CardContent from '@mui/material/CardContent';
 import CardHeader from '@mui/material/CardHeader';
-import IconButton from '@mui/material/IconButton';
-import MoreVertIcon from '@mui/icons-material/MoreVert';
-import * as React from 'react';
 import Add from "@mui/icons-material/Add";
-import {TaskList} from "./TaskList";
 import {Section, Tasks} from "./Section";
+import {TaskList} from "./TaskList";
+import {SectionOptionPopper} from "./SectionOptionPopper";
 
 export const SectionComponent = (props: Section & Tasks) => {
     const {name, tasks} = props
@@ -18,9 +17,7 @@ export const SectionComponent = (props: Section & Tasks) => {
         <Card sx={{maxWidth: '325px'}}>
             <CardHeader
                 action={
-                    <IconButton aria-label="settings">
-                        <MoreVertIcon/>
-                    </IconButton>
+                    <SectionOptionPopper/>
                 }
                 title={name}
                 align="left"
