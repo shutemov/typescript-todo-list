@@ -12,11 +12,13 @@ import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
-import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
+import ListItemButton from '@mui/material/ListItemButton';
+import Collapse from '@mui/material/Collapse';
 import {ProjectComponent} from "./ProjectComponent";
 import {TodoistApi} from './TodoistApi';
 import {Project} from './Project';
+import {ExpandLess, ExpandMore} from "@mui/icons-material";
 
 
 const drawerWidth = 240;
@@ -81,6 +83,8 @@ export const ProjectsPage = () => {
     const defaultProjects = new Array<Project>()
     const [projects, setProjects] = useState(defaultProjects)
 
+    const [expandProjects, setExpandProjects] = useState(false)
+
     useEffect(() => {
         (async () => {
             const projects: Array<Project> = await TodoistApi.getProjects()
@@ -95,6 +99,10 @@ export const ProjectsPage = () => {
     const handleDrawerClose = () => {
         setOpen(false);
     };
+
+    const handleExpandProjects = () => {
+        setExpandProjects(!expandProjects)
+    }
 
     return (
         <Box sx={{display: 'flex'}}>
@@ -111,7 +119,7 @@ export const ProjectsPage = () => {
                         <MenuIcon/>
                     </IconButton>
                     <Typography variant="h6" noWrap component="div">
-                        Projects
+                        TS Todoist
                     </Typography>
                 </Toolbar>
             </AppBar>
@@ -135,11 +143,38 @@ export const ProjectsPage = () => {
                 </DrawerHeader>
                 <Divider/>
                 <List>
-                    {projects.map(({id, name}) => (
-                        <ListItem button key={id} onClick={() => setProject({id, name})}>
+                    {projects.map(({id, name}) => {
+                        if (name !== "Inbox") return
+                        return <ListItemButton sx={{pl: 4}}
+                                               key={id}
+                                               onClick={
+                                                   () => setProject({id, name})
+                                               }>
                             <ListItemText primary={name}/>
-                        </ListItem>
-                    ))}
+                        </ListItemButton>
+
+                    })}
+                    <ListItemButton onClick={handleExpandProjects} sx={{pl: 4}}>
+                        <ListItemText primary="Projects"/>
+                        {expandProjects ? <ExpandLess/> : <ExpandMore/>}
+                    </ListItemButton>
+                    <Collapse in={expandProjects} timeout="auto" unmountOnExit>
+                        <List component="div" disablePadding>
+                            {projects.map(({id, name}) => {
+                                    if (name === "Inbox") return
+
+                                    return <ListItemButton sx={{pl: 4}}
+                                                           key={id}
+                                                           onClick={
+                                                               () => setProject({id, name})
+                                                           }>
+                                        <ListItemText primary={name}/>
+                                    </ListItemButton>
+                                }
+                            )}
+                            <Divider/>
+                        </List>
+                    </Collapse>
                 </List>
             </Drawer>
             <Main open={open}>
